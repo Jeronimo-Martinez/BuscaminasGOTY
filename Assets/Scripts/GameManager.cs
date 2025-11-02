@@ -15,8 +15,8 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        // 🧩 Nivel difícil según el enunciado: 16x30 con 99 minas
-        CreateGameBoard(30, 16, 99);
+        //  Nivel difícil según el enunciado: 16x30 con 99 minas
+        CreateGameBoard(10, 10, 1);
     }
 
     public void CreateGameBoard(int width, int height, int numMines)
