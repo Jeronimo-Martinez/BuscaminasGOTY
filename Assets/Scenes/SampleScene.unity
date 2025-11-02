@@ -224,12 +224,16 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 45577700918406923, guid: 2c26ef67039a4664b9c673bc74e8e2d7, type: 3}
+      propertyPath: isMine
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 45577700918406923, guid: 2c26ef67039a4664b9c673bc74e8e2d7, type: 3}
       propertyPath: flagged
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 45577700918406923, guid: 2c26ef67039a4664b9c673bc74e8e2d7, type: 3}
       propertyPath: mineCount
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1489990864459234055, guid: 2c26ef67039a4664b9c673bc74e8e2d7, type: 3}
       propertyPath: m_IsTrigger
