@@ -24,7 +24,7 @@ public class Tile : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
-    private void OnMouseOver()
+    private void OnMouseDown()
     {
         
         if (active)
