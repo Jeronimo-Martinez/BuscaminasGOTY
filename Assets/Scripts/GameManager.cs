@@ -62,16 +62,44 @@ public class GameManager : MonoBehaviour
                 tile.isMine = (minasMatriz[row, col] == 1); 
 
 
-            }
-         
 
-}
+            }
+        }
+        AjustarCamara();  // 🔹 Ajusta automáticamente el zoom
+        Debug.Log($" Tablero generado: {width}x{height} ({contarMinas()} minas)");
     }
+
     private int contarMinas()
     {
         int count = 0;
         foreach (int v in minasMatriz)
             if (v == 1) count++;
         return count;
+    }
+
+    private void AjustarCamara()
+    {
+        Camera cam = Camera.main;
+        if (cam == null)
+        {
+            Debug.LogWarning(" No se encontro la camara'");
+            return;
+        }
+
+        // Centrar la cámara en el tablero
+        cam.transform.position = new Vector3(0, 0, -10);
+
+        // Calcular el aspecto del tablero
+        float aspect = (float)Screen.width / Screen.height;
+
+        // El tamaño ortográfico base debe cubrir la mitad de la altura
+        float halfHeight = height / 2f;
+        float halfWidth = width / 2f / aspect;
+
+        // Ajustar el zoom: elige el mayor valor entre ancho o alto
+        cam.orthographicSize = Mathf.Max(halfHeight, halfWidth);
+
+        // Añadir un pequeño margen
+        cam.orthographicSize += 1f;
     }
 }
