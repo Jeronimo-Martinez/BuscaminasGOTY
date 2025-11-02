@@ -67,5 +67,5 @@
         "*.sln": "*.csproj",
         "*.slnx": "*.csproj"
     },
-    "dotnet.defaultSolution": "BuscaminasGOTY-main.slnx"
+    "dotnet.defaultSolution": "BuscaminasGOTY.slnx"
 }
