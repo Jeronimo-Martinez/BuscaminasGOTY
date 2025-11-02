@@ -5,6 +5,9 @@ using UnityEngine;
 [RequireComponent(typeof(SpriteRenderer))]
 public class Tile : MonoBehaviour
 {
+    public GameEvent onMineClicked;
+
+
     [Header("Tile Sprites")]
     [SerializeField] private Sprite unclickedTile;
     [SerializeField] private Sprite flaggedTile;
@@ -54,14 +57,15 @@ public class Tile : MonoBehaviour
 
     public void ClickedTile()
     {
-        if (active & !flagged)
+        if (active && !flagged)
         {
             
             active = false;
             if (isMine)
             {
-                
+
                 spriteRenderer.sprite = mineHitTile;
+                onMineClicked.Raise();
             }
             else
             {

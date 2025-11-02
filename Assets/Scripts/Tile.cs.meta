@@ -4,6 +4,7 @@ MonoImporter:
   externalObjects: {}
   serializedVersion: 2
   defaultReferences:
+  - onMineClicked: {fileID: 11400000, guid: 7294bf6df8acf6c4e9ce952adf8eb9ac, type: 2}
   - unclickedTile: {fileID: 2528945350537408158, guid: 68f09e1952e9785499f353595d2604a7, type: 3}
   - flaggedTile: {fileID: 1805158079502305607, guid: ac596522db3c3fc4cb3546246c94a359, type: 3}
   - mineTile: {fileID: 8135663367076951168, guid: dbdec28f3ff0780409c7e2456c827f3c, type: 3}
