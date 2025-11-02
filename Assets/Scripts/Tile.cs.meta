@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: ffe404ae50e13274c959b74f97d017c9
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - unclickedTile: {fileID: 2528945350537408158, guid: 68f09e1952e9785499f353595d2604a7, type: 3}
+  - flaggedTile: {fileID: 1805158079502305607, guid: ac596522db3c3fc4cb3546246c94a359, type: 3}
+  - mineTile: {fileID: 8135663367076951168, guid: dbdec28f3ff0780409c7e2456c827f3c, type: 3}
+  - mineWrongTile: {fileID: -851801900025170881, guid: 8802355480c6ed941b3a242820852acb, type: 3}
+  - mineHitTile: {fileID: 8250157587147991992, guid: 416b32a073aa69b40b26fbe3f66fc332, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
