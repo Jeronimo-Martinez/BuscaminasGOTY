@@ -10,21 +10,32 @@ public class GameManager : MonoBehaviour
     private int width;        // Ancho del tablero
     private int height;       // Alto del tablero
     private int numMines;     // Número de minas (por ahora solo guardado)
+    private int[,] minasMatriz; // Matriz de minas recibida del menú
 
     private readonly float tileSize = 1f;  // Tamaño visual de cada casilla
 
     void Start()
     {
+        minasMatriz = Menu.matrizGenerada;
+        numMines = contarMinas();
+
+        if (minasMatriz == null)
+        {
+            Debug.LogWarning("⚠️ No se recibió matriz desde el menú. Se generará una por defecto.");
+            minasMatriz = GeneradorMinas.GenerarMinas(10, 10, 10); // fallback
+        }
+
+        // Obtener dimensiones reales
+        height = minasMatriz.GetLength(0);
+        width = minasMatriz.GetLength(1);
+
+        CreateGameBoard();
         //  Nivel difícil según el enunciado: 16x30 con 99 minas
-        CreateGameBoard(10, 10, 1);
+        
     }
 
-    public void CreateGameBoard(int width, int height, int numMines)
+    public void CreateGameBoard()
     {
-        // Guardar los parámetros del tablero
-        this.width = width;
-        this.height = height;
-        this.numMines = numMines;
 
         // Inicializar la matriz (estructura requerida por el enunciado)
         grid = new Tile[width, height];
@@ -35,8 +46,8 @@ public class GameManager : MonoBehaviour
             for (int col = 0; col < width; col++)
             {
                 // Instanciar el prefab de la casilla
-                Transform tileTransform = Instantiate(tilePrefab);
-                tileTransform.parent = gameHolder;
+                Transform tileTransform = Instantiate(tilePrefab, gameHolder);
+                //tileTransform.parent = gameHolder;
 
                 // Calcular la posición centrada del tablero
                 float xIndex = col - ((width - 1) / 2.0f);
@@ -47,8 +58,20 @@ public class GameManager : MonoBehaviour
                 Tile tile = tileTransform.GetComponent<Tile>();
                 grid[col, row] = tile;
 
-    
+                // Asignar si la casilla es mina o no según la matriz recibida
+                tile.isMine = (minasMatriz[row, col] == 1); 
+
+
             }
-        }
+         
+
+}
+    }
+    private int contarMinas()
+    {
+        int count = 0;
+        foreach (int v in minasMatriz)
+            if (v == 1) count++;
+        return count;
     }
 }
