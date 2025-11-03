@@ -1,12 +1,13 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private Transform tilePrefab;   // Prefab de la casilla (Tile)
     [SerializeField] private Transform gameHolder;   // Contenedor visual de las casillas
 
-    private Tile[,] grid;     // Matriz 2D de casillas (requisito del enunciado)
+    private Tile[,] grid;     // Matriz2D de casillas (requisito del enunciado)
     private int width;        // Ancho del tablero
     private int height;       // Alto del tablero
     private int numMines;     // Número de minas (por ahora solo guardado)
@@ -14,6 +15,10 @@ public class GameManager : MonoBehaviour
 
     private readonly float tileSize = 1f;  // Tamaño visual de cada casilla
     public bool primerClick = true;
+
+    [Header("UI Panels")]
+    [SerializeField] private GameOverUI gameOverPanel; // Panel que reutiliza victoria y derrota
+
     void Start()
     {
         minasMatriz = Menu.matrizGenerada;
@@ -187,6 +192,9 @@ public class GameManager : MonoBehaviour
               
             }
         }
+        // Cargar escena GameOver con estado de derrota
+        GameOverState.GanoJuego = false;
+        SceneManager.LoadScene("GameOver");
     }
 
     public void CheckGameOver()
@@ -218,6 +226,8 @@ public class GameManager : MonoBehaviour
                 }
             }
             // Aquí puedes agregar lógica adicional para manejar la victoria
+            GameOverState.GanoJuego = true;
+            SceneManager.LoadScene("GameOver");
         }
     }
 
