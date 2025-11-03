@@ -17,6 +17,10 @@ public class Tile : MonoBehaviour
     [SerializeField] private Sprite mineWrongTile;
     [SerializeField] private Sprite mineHitTile;
 
+    public int col;
+    public int row;
+    public GameManager gameManager;
+
     private SpriteRenderer spriteRenderer;
     public bool flagged = false;
     public bool active = true;
@@ -60,12 +64,17 @@ public class Tile : MonoBehaviour
     {
         if (active && !flagged)
         {
-            
+            if (gameManager.primerClick)
+            {   
+                gameManager.AsegurarPrimerClickSeguro(col, row);
+                gameManager.primerClick = false;
+            }
             active = false;
             if (isMine)
             {
                 SceneManager.LoadScene("Minijuegos", LoadSceneMode.Additive);
                 spriteRenderer.sprite = mineHitTile;
+                gameManager.GameOver();
                 
                 
 
@@ -73,7 +82,37 @@ public class Tile : MonoBehaviour
             else
             {
                 spriteRenderer.sprite = clickedTiles[mineCount];
+                if (mineCount == 0) // se expande si se clickea una casilla sin mina y sin numero
+                {
+                    // Notify GameManager to reveal adjacent tiles
+                    gameManager.ClickVecinos(col, row);
+                }
+                gameManager.CheckGameOver();
             }
+        }
+    }
+    public void ShowGameOverState() 
+    {
+        if (active)
+        {
+            active = false;
+            if (isMine && !flagged)
+            {
+                spriteRenderer.sprite = mineTile; // Mina no marcada
+            }
+            else if (!isMine && flagged)
+            {
+                spriteRenderer.sprite = mineWrongTile; // Mina marcada incorrectamente
+            }
+        }
+            
+    }
+    public void SetFlaggedIfMine()
+    {
+        if (isMine)
+        {
+            flagged = true;
+            spriteRenderer.sprite = flaggedTile;
         }
     }
 }
