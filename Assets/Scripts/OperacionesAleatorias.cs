@@ -32,8 +32,7 @@ public class OperacionesAleatorias : MonoBehaviour
         if (tiempoRestante <= 0f)
         {
             jugando = false;
-            // tiempo agotado => derrota
-            NotificarDerrota();
+            SceneManager.LoadScene("Menu"); // reemplaza con tu escena de Game Over
         }
     }
     public void GenerarPreguntas()
@@ -58,13 +57,12 @@ public class OperacionesAleatorias : MonoBehaviour
                 preguntaText.text = $"{a} × {b} = ?";
                 break;
             case 3:
-                while (a % b != 0 && b != 1)  // busca una división "limpia"
-        b = UnityEngine.Random.Range(1, 10);
+                if (b == 0) b = 1;
+                float respuestaAproximada = a / b;
+                respuestaCorrecta = Mathf.Round(respuestaAproximada * 10f) / 10f;
+                preguntaText.text = $"{a} ÷ {b} = ?";
 
-    float respuestaAproximada = (float)a / b;
-    respuestaCorrecta = Mathf.Round(respuestaAproximada * 10f) / 10f;
-    preguntaText.text = $"{a} ÷ {b} = ?";
-    break;
+                break;
         }
     }
     public void OnAccept()
@@ -75,38 +73,17 @@ public class OperacionesAleatorias : MonoBehaviour
             jugando = false;
             if (Mathf.Approximately(respuesta, respuestaCorrecta))
             {
-                // Vuelve al tablero
+                //  Vuelve al tablero
                 SceneManager.UnloadSceneAsync("Minijuegos");
+
             }
             else
             {
                 // Gay(Hector) Over
-                NotificarDerrota();
+                SceneManager.LoadScene("Menu");
             }
         }
     }
 
-    private void NotificarDerrota()
-    {
-        // intenta buscar un GameManager activo en la escena del tablero si no está referenciado
-        if (gameManager == null)
-        {
-            gameManager = FindObjectOfType<GameManager>();
-        }
-        if (gameManager != null)
-        {
-            gameManager.GameOver();
-        }
-        else
-        {
-            SceneManager.LoadScene("Menu");
-        }
-        // cerrar minijuego si está cargado aditivamente
-        var scene = SceneManager.GetSceneByName("Minijuegos");
-        if (scene.isLoaded)
-        {
-            SceneManager.UnloadSceneAsync("Minijuegos");
-        }
-    }
 
 }

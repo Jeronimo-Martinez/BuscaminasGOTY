@@ -50,7 +50,7 @@ public class SimonDice : MonoBehaviour
                 timerActivo = false;
                 esperandoJugador = false;
                 TextoTuTurno.text = "Tiempo agotado!";
-                NotificarDerrota(); // Game Over
+                SceneManager.LoadScene("Menu"); // Game Over
             }
         }
     }
@@ -110,7 +110,7 @@ public class SimonDice : MonoBehaviour
             {
                 esperandoJugador = false;
                 timerActivo = false;
-                NotificarDerrota(); // Game Over
+                SceneManager.LoadScene("Menu"); // Game Over
                 return;
             }
         }
@@ -120,28 +120,7 @@ public class SimonDice : MonoBehaviour
         {
             esperandoJugador = false;
             timerActivo = false;
-            // volver al tablero descargando escena de minijuegos
-            var scene = SceneManager.GetSceneByName("Minijuegos");
-            if (scene.isLoaded)
-                SceneManager.UnloadSceneAsync("Minijuegos");
             SceneManager.UnloadSceneAsync("Minijuegos"); // Vuelve al tablero
         }
-    }
-
-    private void NotificarDerrota()
-    {
-        var gm = Object.FindObjectOfType<GameManager>();
-        if (gm != null)
-        {
-            gm.GameOver();
-        }
-        else
-        {
-            SceneManager.LoadScene("GameOver");
-        }
-        // cerrar minijuegos si estaba abierto
-        var scene = SceneManager.GetSceneByName("Minijuegos");
-        if (scene.isLoaded)
-            SceneManager.UnloadSceneAsync("Minijuegos");
     }
 }
