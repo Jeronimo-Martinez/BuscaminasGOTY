@@ -74,7 +74,7 @@ public class Tile : MonoBehaviour
             {
                 SceneManager.LoadScene("Minijuegos", LoadSceneMode.Additive);
                 spriteRenderer.sprite = mineHitTile;
-                gameManager.GameOver();
+                //gameManager.GameOver();
                 
                 
 
