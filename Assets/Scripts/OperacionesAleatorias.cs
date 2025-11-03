@@ -4,16 +4,36 @@ using UnityEngine.SceneManagement;
 using System;
 public class OperacionesAleatorias : MonoBehaviour
 {
-    public TMP_Text preguntaText;
+    public TMP_Text timerText; //Para poner un timer visual
+    public float tiempoLimite = 5f; // 5 segundos
+    private float tiempoRestante;
+    private bool jugando = false;
+    public TMP_Text preguntaText; //Para que genere el texto visualmente
     public TMP_InputField respuestaUsuario;
-    public string tableroNombre = "Tablero";
+    public string tableroNombre = "Tablero"; //Para llamar al tablero donde está jugando si responde bien
     private float respuestaCorrecta;
     public GameManager gameManager;
 
     void OnEnable()
     {
+        tiempoRestante = tiempoLimite; // Reinicia el timer
+        jugando = true; //Variable para saber si le queda tiempo o no
         GenerarPreguntas(); // Cada vez que el panel se active, genera una pregunta
         respuestaUsuario.text = "";
+    }
+    void Update()
+    {
+        if (!jugando) return;
+        // Redondear para mostrar 1 decimal
+        float tiempoMostrado = Mathf.Max(tiempoRestante, 0f);
+        timerText.text = tiempoMostrado.ToString("F1"); // Muestra 1 decimal
+        tiempoRestante -= Time.deltaTime;
+
+        if (tiempoRestante <= 0f)
+        {
+            jugando = false;
+            SceneManager.LoadScene("Menu"); // reemplaza con tu escena de Game Over
+        }
     }
     public void GenerarPreguntas()
     {
@@ -50,15 +70,17 @@ public class OperacionesAleatorias : MonoBehaviour
         float respuesta;
         if (float.TryParse(respuestaUsuario.text, out respuesta))
         {
+            jugando = false;
             if (Mathf.Approximately(respuesta, respuestaCorrecta))
             {
                 //  Vuelve al tablero
                 SceneManager.UnloadSceneAsync("Minijuegos");
+
             }
             else
             {
                 // Gay(Hector) Over
-                gameManager.GameOver();
+                SceneManager.LoadScene("Menu");
             }
         }
     }
