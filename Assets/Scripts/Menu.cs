@@ -9,6 +9,7 @@ public class Menu : MonoBehaviour
     const int experto = 2; // indice del modo personalizado
     const int personalizado = 3; // indice del modo personalizado
     [SerializeField] private GameObject panelPersonalizado;
+    [SerializeField] private GameObject panelTuto;
     [SerializeField] private GameObject errorMinas;
     [SerializeField] private GameObject errorTexto;
 
@@ -21,7 +22,7 @@ public class Menu : MonoBehaviour
     public int modoSelecionado;
     public static int[,] matrizGenerada;
     public void GoToScene(string sceneName)
-    { 
+    {
         selector.GetDropdownValue();
         modoSelecionado = selector.modoSeleccionado;
 
@@ -55,9 +56,9 @@ public class Menu : MonoBehaviour
         else
         {
             panelPersonalizado.SetActive(true);
-            
+
         }
-            
+
     }
     public void ConfirmarPersonalizado(string sceneName)
     {
@@ -93,8 +94,8 @@ public class Menu : MonoBehaviour
 
         try
         {
-            filas = int.Parse(inputFilas.text); 
-            columnas = int.Parse(inputColumnas.text); 
+            filas = int.Parse(inputFilas.text);
+            columnas = int.Parse(inputColumnas.text);
             minas = int.Parse(inputMinas.text);
             matrizGenerada = GeneradorMinas.GenerarMinas(filas, columnas, minas);
             Debug.Log($"Modo Personalizado: {filas}x{columnas} con {minas} minas");
@@ -108,7 +109,7 @@ public class Menu : MonoBehaviour
             Debug.LogError(" Error inesperado al generar la matriz: " + e.Message);
         }
     }
-    
+
 
     public void CancelarPersonalizado()
     {
@@ -116,9 +117,18 @@ public class Menu : MonoBehaviour
         errorMinas.SetActive(false);
         errorTexto.SetActive(false);
     }
-public void Quit()
+    public void Quit()
     {
         Application.Quit();
         Debug.Log("La app se ha cerrado");
+    }
+
+    public void CerrarTuto()
+    {
+        panelTuto.SetActive(false);
+    }
+    public void AbrirTuto()
+    {
+        panelTuto.SetActive(true);
     }
 }
