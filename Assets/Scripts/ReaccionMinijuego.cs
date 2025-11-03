@@ -13,6 +13,7 @@ public class ReaccionMinijuego : MonoBehaviour
     
     void OnEnable()
     {
+        TextoGuia.gameObject.SetActive(true);
         objetivo.SetActive(false);
         StartCoroutine(EsperarMomentoAleatorio());
     }
