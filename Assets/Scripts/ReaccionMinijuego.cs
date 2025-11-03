@@ -34,7 +34,7 @@ public class ReaccionMinijuego : MonoBehaviour
         if (esperandoClick)
         {
             // Si no reacciona
-            SceneManager.LoadScene("Menu"); // Game Over
+            SceneManager.LoadSceneAsync("Menu"); // Game Over
         }
     }
 
