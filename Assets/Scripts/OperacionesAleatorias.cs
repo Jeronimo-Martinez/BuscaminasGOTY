@@ -58,13 +58,12 @@ public class OperacionesAleatorias : MonoBehaviour
                 preguntaText.text = $"{a} × {b} = ?";
                 break;
             case 3:
-                while (a % b != 0 && b != 1)  // busca una división "limpia"
-        b = UnityEngine.Random.Range(1, 10);
+                if (b == 0) b = 1;
+                float respuestaAproximada = a / b;
+                respuestaCorrecta = Mathf.Round(respuestaAproximada * 10f) / 10f;
+                preguntaText.text = $"{a} ÷ {b} = ?";
 
-    float respuestaAproximada = (float)a / b;
-    respuestaCorrecta = Mathf.Round(respuestaAproximada * 10f) / 10f;
-    preguntaText.text = $"{a} ÷ {b} = ?";
-    break;
+                break;
         }
     }
     public void OnAccept()
