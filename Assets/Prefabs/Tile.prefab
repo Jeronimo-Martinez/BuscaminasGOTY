@@ -150,6 +150,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffe404ae50e13274c959b74f97d017c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tile
+  onMineClicked: {fileID: 11400000, guid: 7294bf6df8acf6c4e9ce952adf8eb9ac, type: 2}
   unclickedTile: {fileID: 2528945350537408158, guid: 68f09e1952e9785499f353595d2604a7, type: 3}
   flaggedTile: {fileID: 1805158079502305607, guid: ac596522db3c3fc4cb3546246c94a359, type: 3}
   clickedTiles:

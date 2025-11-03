@@ -1,10 +1,14 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 
 [RequireComponent(typeof(SpriteRenderer))]
 public class Tile : MonoBehaviour
 {
+    public GameEvent onMineClicked;
+
+
     [Header("Tile Sprites")]
     [SerializeField] private Sprite unclickedTile;
     [SerializeField] private Sprite flaggedTile;
@@ -58,7 +62,7 @@ public class Tile : MonoBehaviour
 
     public void ClickedTile()
     {
-        if (active & !flagged)
+        if (active && !flagged)
         {
             if (gameManager.primerClick)
             {   
@@ -68,9 +72,12 @@ public class Tile : MonoBehaviour
             active = false;
             if (isMine)
             {
-                
+                SceneManager.LoadScene("Minijuegos", LoadSceneMode.Additive);
                 spriteRenderer.sprite = mineHitTile;
                 gameManager.GameOver();
+                
+                
+
             }
             else
             {
