@@ -72,9 +72,10 @@ public class Tile : MonoBehaviour
             active = false;
             if (isMine)
             {
+                //Abre los minijuegos cuando clicka una mina
                 SceneManager.LoadScene("Minijuegos", LoadSceneMode.Additive);
                 spriteRenderer.sprite = mineHitTile;
-                gameManager.GameOver();
+                
                 
                 
 

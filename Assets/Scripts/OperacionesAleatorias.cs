@@ -8,6 +8,8 @@ public class OperacionesAleatorias : MonoBehaviour
     public TMP_InputField respuestaUsuario;
     public string tableroNombre = "Tablero";
     private float respuestaCorrecta;
+    public GameManager gameManager;
+
     void OnEnable()
     {
         GenerarPreguntas(); // Cada vez que el panel se active, genera una pregunta
@@ -56,7 +58,7 @@ public class OperacionesAleatorias : MonoBehaviour
             else
             {
                 // Gay(Hector) Over
-                Debug.Log("Iasdqwwqd");
+                gameManager.GameOver();
             }
         }
     }
