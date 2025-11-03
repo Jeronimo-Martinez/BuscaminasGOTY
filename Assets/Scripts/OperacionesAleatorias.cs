@@ -1,12 +1,16 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 public class OperacionesAleatorias : MonoBehaviour
 {
     public TMP_Text preguntaText;
+    public TMP_InputField respuestaUsuario;
+    public string tableroNombre = "Tablero";
     private int respuestaCorrecta;
     void OnEnable()
     {
         GenerarPreguntas(); // Cada vez que el panel se active, genera una pregunta
+        respuestaUsuario.text = "";
     }
     public void GenerarPreguntas()
     {
@@ -30,19 +34,28 @@ public class OperacionesAleatorias : MonoBehaviour
                 preguntaText.text = $"{a} × {b} = ?";
                 break;
             case 3:
+                if (b == 0) b = 1;
                 respuestaCorrecta = a / b;
                 preguntaText.text = $"{a} ÷ {b} = ?";
                 break;
         }
     }
-     public bool VerificarRespuesta(string input)
+    public void OnAccept()
     {
         int respuesta;
-        if(int.TryParse(input, out respuesta))
+        if (int.TryParse(respuestaUsuario.text, out respuesta))
         {
-            return respuesta == respuestaCorrecta;
+            if (respuesta == respuestaCorrecta)
+            {
+                //  Vuelve al tablero
+                SceneManager.UnloadSceneAsync("Minijuegos");
+            }
+            else
+            {
+                // Gay(Hector) Over
+                Debug.Log("Iasdqwwqd");
+            }
         }
-        return false;
     }
 
 

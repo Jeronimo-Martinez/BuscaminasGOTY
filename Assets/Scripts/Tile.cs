@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 
 [RequireComponent(typeof(SpriteRenderer))]
@@ -63,9 +64,11 @@ public class Tile : MonoBehaviour
             active = false;
             if (isMine)
             {
-
+                SceneManager.LoadScene("Minijuegos", LoadSceneMode.Additive);
                 spriteRenderer.sprite = mineHitTile;
-                onMineClicked.Raise();
+                
+                
+
             }
             else
             {
