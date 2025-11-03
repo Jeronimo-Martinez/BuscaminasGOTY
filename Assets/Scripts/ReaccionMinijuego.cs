@@ -34,7 +34,7 @@ public class ReaccionMinijuego : MonoBehaviour
         if (esperandoClick)
         {
             // Si no reacciona
-            NotificarDerrota(); // Game Over
+            SceneManager.LoadSceneAsync("Menu"); // Game Over
         }
     }
 
@@ -48,21 +48,5 @@ public class ReaccionMinijuego : MonoBehaviour
         }
     }
 
-    private void NotificarDerrota()
-    {
-        var gm = Object.FindObjectOfType<GameManager>();
-        if (gm != null)
-        {
-            gm.GameOver();
-        }
-        else
-        {
-            SceneManager.LoadScene("GameOver");
-        }
-        var scene = SceneManager.GetSceneByName("Minijuegos");
-        if (scene.isLoaded)
-        {
-            SceneManager.UnloadSceneAsync("Minijuegos");
-        }
-    }
+
 }

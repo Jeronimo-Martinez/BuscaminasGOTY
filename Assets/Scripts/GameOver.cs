@@ -14,8 +14,6 @@ public class GameOverUI : MonoBehaviour
 
     private void Awake()
     {
-        // Tomar el estado global al entrar a la escena de Game Over
-        ganoJuego = GameOverState.GanoJuego;
         MostrarResultado(ganoJuego);
         // Asigna los eventos de los botones
         if (botonMenuPrincipal != null)
@@ -29,33 +27,20 @@ public class GameOverUI : MonoBehaviour
    
     public void MostrarResultado(bool ganoJuego)
     {
-        this.ganoJuego = ganoJuego;
+        ganoJuego = false;
         if (labelResultado != null)
         {
             if (ganoJuego)
             {
                 labelResultado.text = "!GANASTE!";
-                if (background != null)
-                    background.color = new Color(0.20f,0.77f,0.45f,1.0f);
+                background.color = new Color(0.20f, 0.77f, 0.45f, 1.0f);
             }
             else
             {
                 labelResultado.text = "PERDISTE!";
-                if (background != null)
-                    background.color = new Color(0.86f,0.19f,0.20f,1.0f);
+                background.color = new Color(0.86f, 0.19f, 0.20f, 1.0f);
             }
         }
-    }
-
-    public void Show(bool gano)
-    {
-        gameObject.SetActive(true);
-        MostrarResultado(gano);
-    }
-
-    public void Hide()
-    {
-        gameObject.SetActive(false);
     }
 
     private void IrMenuPrincipal()
