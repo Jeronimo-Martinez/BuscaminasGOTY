@@ -120,7 +120,7 @@ public class SimonDice : MonoBehaviour
         {
             esperandoJugador = false;
             timerActivo = false;
-            SceneManager.LoadScene("Tablero"); // Vuelve al tablero
+            SceneManager.UnloadSceneAsync("Minijuegos"); // Vuelve al tablero
         }
     }
 }
