@@ -8,16 +8,16 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Menu.unity
     guid: 4269685f7dd9e2d458b94567b1a92636
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Modo.unity
     guid: 7a4ae8f557bbd2c4f83f422c0824b3e7
-  - enabled: 0
-    path: Assets/Scenes/Personalizado.unity
+  - enabled: 1
+    path: Assets/Scenes/personalizado.unity
     guid: 86430edc0e19c9745b538c0a432a3449
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Tablero.unity
     guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Minijuegos.unity
     guid: de9fb272293ad72409fbb0d3e045f31f
   m_configObjects:
