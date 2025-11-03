@@ -451,7 +451,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &154491490
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1649,6 +1649,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2f9525d79dcd6b4da46fb1006cffed0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MinijuegoLoader
+  minijuegos:
+  - {fileID: 197413729}
+  - {fileID: 154491489}
   miniGamePanel: {fileID: 154491489}
 --- !u!4 &1203073411
 Transform:
