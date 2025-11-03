@@ -32,7 +32,8 @@ public class OperacionesAleatorias : MonoBehaviour
         if (tiempoRestante <= 0f)
         {
             jugando = false;
-            SceneManager.LoadScene("Menu"); // reemplaza con tu escena de Game Over
+            // tiempo agotado => derrota
+            NotificarDerrota();
         }
     }
     public void GenerarPreguntas()
@@ -73,17 +74,38 @@ public class OperacionesAleatorias : MonoBehaviour
             jugando = false;
             if (Mathf.Approximately(respuesta, respuestaCorrecta))
             {
-                //  Vuelve al tablero
+                // Vuelve al tablero
                 SceneManager.UnloadSceneAsync("Minijuegos");
-
             }
             else
             {
                 // Gay(Hector) Over
-                SceneManager.LoadScene("Menu");
+                NotificarDerrota();
             }
         }
     }
 
+    private void NotificarDerrota()
+    {
+        // intenta buscar un GameManager activo en la escena del tablero si no está referenciado
+        if (gameManager == null)
+        {
+            gameManager = FindObjectOfType<GameManager>();
+        }
+        if (gameManager != null)
+        {
+            gameManager.GameOver();
+        }
+        else
+        {
+            SceneManager.LoadScene("Menu");
+        }
+        // cerrar minijuego si está cargado aditivamente
+        var scene = SceneManager.GetSceneByName("Minijuegos");
+        if (scene.isLoaded)
+        {
+            SceneManager.UnloadSceneAsync("Minijuegos");
+        }
+    }
 
 }
