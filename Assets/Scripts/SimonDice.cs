@@ -124,6 +124,7 @@ public class SimonDice : MonoBehaviour
             var scene = SceneManager.GetSceneByName("Minijuegos");
             if (scene.isLoaded)
                 SceneManager.UnloadSceneAsync("Minijuegos");
+            SceneManager.UnloadSceneAsync("Minijuegos"); // Vuelve al tablero
         }
     }
 
