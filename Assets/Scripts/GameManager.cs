@@ -428,4 +428,28 @@ public class GameManager : MonoBehaviour
             }
         }
     }
+    public void ReiniciarTablero()
+    {
+        Debug.Log(" Reiniciando tablero...");
+
+        // 1️ Eliminar las casillas existentes del contenedor visual
+        foreach (Transform child in gameHolder)
+        {
+            Destroy(child.gameObject);
+        }
+
+        // 2️ Resetear variables
+        primerClick = true;
+
+        // Si la matriz de minas vino del menú, reutilízala o genera una nueva
+        if (minasMatriz == null)
+        {
+            minasMatriz = GeneradorMinas.GenerarMinas(10, 10, 10);
+        }
+
+        // 3️ Recrear la grilla y sus números
+        CreateGameBoard();
+
+        Debug.Log("Tablero reiniciado correctamente.");
+    }
 }
